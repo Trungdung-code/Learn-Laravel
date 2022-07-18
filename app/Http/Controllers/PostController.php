@@ -10,7 +10,8 @@ class PostController extends Controller
 {
     public function index()
     {
-        $post = Post::all();
+        $user = Auth::user();
+        $post = $user->posts;
         return view('post.index', compact('post'));
     }
     public function create()

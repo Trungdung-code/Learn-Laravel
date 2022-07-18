@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class post extends Model
 {
+    //posts
+    
     use HasFactory;
 
     public function user(){
