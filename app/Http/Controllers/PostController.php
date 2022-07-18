@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;
 use App\Models\Post;
 use Illuminate\Http\Request;
 
@@ -25,6 +26,7 @@ class PostController extends Controller
         $Post = new Post();
         $Post->title = $title;
         $Post->content = $content;
+        $Post->user_id = Auth::user()->id;
         $Post->save();
         return redirect(route('post.index'));
     }
@@ -53,9 +55,10 @@ class PostController extends Controller
         return redirect(route('post.index'));
     }
 
-    public function show(Request $request, $id)
+    public function show($id)
     {
-        $post = Post::where('id', '=', $id)->get();
+        $post = Post::find($id);
         return view('post.show', compact('post'));
     }
+
 }
