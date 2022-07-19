@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\TagController;
 use Illuminate\Support\Facades\Auth;
 
 /*
@@ -29,4 +30,7 @@ Route::get('test', function () {
     return Auth::user()->posts;
 });
 
+
 Route::resource('post', PostController::class);
+
+Route::resource('tag', TagController::class);

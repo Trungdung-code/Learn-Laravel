@@ -22,13 +22,12 @@ class PostController extends Controller
 
     public function store(Request $request)
     {
-        $title = $request->get('title');
-        $content = $request->get('content');
-        $Post = new Post();
-        $Post->title = $title;
-        $Post->content = $content;
-        $Post->user_id = Auth::user()->id;
-        $Post->save();
+        $post = new Post();
+        $post->title = $request->get('title');
+        $post->content = $request->get('content');
+        $post->user_id = Auth::user()->id;
+        $post->save();
+        $post->tags()->sync($request->get('tags'));
         return redirect(route('post.index'));
     }
 
@@ -40,12 +39,11 @@ class PostController extends Controller
 
     public function update(Request $request, $id)
     {
-        $title = $request->get('title');
-        $content = $request->get('content');
-        Post::where('id', $id)->update([
-            'title' => $title,
-            'content' => $content,
-        ]);
+        $post = Post::find($id);
+        $post->title = $request->get('title');
+        $post->content = $request->get('content');
+        $post->tags()->sync($request->get('tags'));
+        $post->save();
         return redirect(route('post.index'));
     }
 
