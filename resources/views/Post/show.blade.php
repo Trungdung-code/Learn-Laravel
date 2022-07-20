@@ -1,6 +1,12 @@
 @extends('layout.app')
 @section('main')
     <h2>created by: {{ $post->user->name }}</h2>
+    @if (session('message'))
+        <div class="alert alert-success">
+            {{ session('message') }}
+        </div>
+    @endif
+
     <table class="table table-dark">
         <thead>
             <tr>

@@ -22,6 +22,10 @@ class PostController extends Controller
 
     public function store(Request $request)
     {
+        $validated = $request->validate([
+            'title' => 'required|max:200',
+            'content' => 'required|max:200',
+        ]);
         $post = new Post();
         $post->title = $request->get('title');
         $post->content = $request->get('content');
@@ -44,7 +48,7 @@ class PostController extends Controller
         $post->content = $request->get('content');
         $post->tags()->sync($request->get('tags'));
         $post->save();
-        return redirect(route('post.index'));
+        return redirect(route('post.show'));
     }
 
     public function destroy($id)

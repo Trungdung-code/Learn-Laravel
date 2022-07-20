@@ -22,7 +22,7 @@ Route::get('/', function () {
 
 Route::get('/dashboard', function () {
     return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+})->middleware(['auth', 'role'])->name('dashboard');
 
 require __DIR__.'/auth.php';
 
@@ -31,6 +31,6 @@ Route::get('test', function () {
 });
 
 
-Route::resource('post', PostController::class);
+Route::resource('post', PostController::class)->middleware(['role']);
 
 Route::resource('tag', TagController::class);
