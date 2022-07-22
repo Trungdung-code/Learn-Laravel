@@ -30,6 +30,9 @@ Route::get('test', function () {
     return Auth::user()->posts;
 });
 
+Route::get('/test', function(){
+    return view('pages.home');
+});
 
 Route::resource('post', PostController::class)->middleware(['role']);
 

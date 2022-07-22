@@ -19,7 +19,7 @@
         </div>
         <div class="mb-3">
             <label for="exampleInputPassword1" class="form-label">Content</label>
-            <input type="text" class="form-control" id="exampleInputPassword1" name="content" maxlength="200" required>
+            <textarea type="text" class="form-control" id="exampleInputPassword1" name="content" maxlength="200" required></textarea>
         </div>
         <label class="form-label">Tags:</label><br>
         @foreach (\App\Models\Tag::all() as $tag)
