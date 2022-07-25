@@ -21,7 +21,7 @@
             <tr>
                 <th scope="row">{{ $post->id }}</th>
                 <td>{{ $post->title }}</td>
-                <td>{{ $post->content }}</td>
+                <td>{!! $post->content !!}</td>
                 <td><a class="chuyendevice" href="{{ route('post.edit', $post->id) }}">Sửa</a></td>
                 <td>
                     <form method="post" action="{{ route('post.destroy', $post->id) }}">

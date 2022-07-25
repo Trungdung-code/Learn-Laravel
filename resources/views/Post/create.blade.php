@@ -14,13 +14,14 @@
         @csrf
         <div class="mb-3">
             <label for="exampleInputEmail1" class="form-label">Title</label>
-            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="title" required
-                maxlength="200">
+            <input type="text" class="form-control" aria-describedby="emailHelp" name="title"
+                required maxlength="200">
         </div>
         <div class="mb-3">
-            <label for="exampleInputPassword1" class="form-label">Content</label>
-            <textarea type="text" class="form-control" id="exampleInputPassword1" name="content" maxlength="200" required></textarea>
+            <label for="" class="form-label">Content</label>
+            <textarea class="form-control" id="mytextarea" name="content" maxlength="200" ></textarea>
         </div>
+
         <label class="form-label">Tags:</label><br>
         @foreach (\App\Models\Tag::all() as $tag)
             <input name="tags[]" type="checkbox" value="{{ $tag->id }}"> {{ $tag->label }}<br>

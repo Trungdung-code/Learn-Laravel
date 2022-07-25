@@ -20,16 +20,18 @@
 
 <body>
     @include('layout.nav')
-    <div class="container">
+    <div class="container" style="min-height: 82vh">
         <div class="row">
             @yield('main')
         </div>
     </div>
     @include('layout.footer')
 </body>
+<script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
 <script>
-    $(document).ready(function() {
-        $('#exampleInputPassword1').summernote();
+    tinymce.init({
+        selector: '#mytextarea'
     });
 </script>
+
 </html>
