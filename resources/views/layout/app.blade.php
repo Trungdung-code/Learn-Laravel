@@ -25,23 +25,14 @@
 
 <body>
     @include('layout.nav')
-    <div class="wrapper">
-        <div class="page-header" style="background-image: url('{{ asset('assets') }}/img/cover.jpg')">
-            <div class="filter"></div>
-            <div class="content-center">
-                <div class="motto">
-                    <h1 class="text-center">Paper Kit 2 Pro</h1>
-                    <h3 class="text-center">Components</h3>
-                </div>
-            </div>
-        </div>
-        <div class="main">
-            @yield('main')
-        </div>
+    <div class="main">
+        @yield('main')
+    </div>
     </div>
 
     @include('layout.footer')
 </body>
+
 <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
 <script>
     tinymce.init({

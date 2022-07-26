@@ -25,11 +25,13 @@ class PostController extends Controller
         $validated = $request->validate([
             'title' => 'required|max:200',
             'content' => 'required|max:200',
+            'picture' => 'required|mimes:jpg,jpeg,png,bmp,tiff |max:10240',
         ]);
         $post = new Post();
         $post->title = $request->get('title');
         $post->content = $request->get('content');
         $post->user_id = Auth::user()->id;
+        $post->picture = $request->file('picture')->store('images');
         $post->save();
         $post->tags()->sync($request->get('tags'));
         return redirect(route('post.index'));
@@ -43,12 +45,27 @@ class PostController extends Controller
 
     public function update(Request $request, $id)
     {
+
+        $validated = $request->validate([
+            'title' => 'required|max:200',
+            'content' => 'required|max:200',
+            'picture' => 'required|mimes:jpg,jpeg,png,bmp,tiff |max:10240',
+        ]);
         $post = Post::find($id);
         $post->title = $request->get('title');
         $post->content = $request->get('content');
+        if ($request->hasFile('picture')) {
+            if ($post->picture == true) {
+
+                if (file_exists($post->picture) == true)
+                    // xoa anh
+                    unlink($post->picture);
+            }
+            $post->picture = $request->file('picture')->store('images');
+        }
         $post->save();
         $post->tags()->sync($request->get('tags'));
-        return redirect(route('post.show'));
+        return redirect(route('post.show', $post->id));
     }
 
     public function destroy($id)
