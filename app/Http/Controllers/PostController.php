@@ -46,8 +46,8 @@ class PostController extends Controller
         $post = Post::find($id);
         $post->title = $request->get('title');
         $post->content = $request->get('content');
-        $post->tags()->sync($request->get('tags'));
         $post->save();
+        $post->tags()->sync($request->get('tags'));
         return redirect(route('post.show'));
     }
 
